@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domus AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <img src="./assets/logo.png" alt="Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Products.html">Products</a></li>
+            <li><a href="app.html">App</a></li>
+	    <li><a href="Priceing.html">Priceing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+	    <li><a href="Logins.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="contact-hero">
+    <h1>Get in Touch</h1>
+    <p>Need support or have questions? Reach us via phone or chat anytime. Office hours are 8am - 5pm, 5 days a week. Support is available 24/7!</p>
+</section>
+
+<section class="contact-grid">
+    <!-- Office Card -->
+<div class="contact-card">
+    <h3>Office Contact</h3>
+    <ul class="hours-list">
+        <li>Sun - Closed</li>
+        <li>Mon - 8am to 5pm</li>
+        <li>Tue - 8am to 5pm</li>
+        <li>Wed - 8am to 5pm</li>
+        <li>Thu - 8am to 5pm</li>
+        <li>Fri - 8am to 5pm</li>
+        <li>Sat - Closed</li>
+    </ul>
+    <button class="hotline-btn" onclick="copyPhone('+15551234567')">📞 Call Now</button>
+</div>
+
+
+    <!-- Support Card -->
+    <div class="contact-card">
+    <h3>Support</h3>
+    <p>Available 24/7 for urgent issues</p>
+    
+    <!-- Hotline button -->
+    <button class="hotline-btn" id="hotlineBtn">📞 +1 (888) 987-6543</button>
+    
+    <button class="chat-now-btn" id="chatNowBtn">Chat Now</button>
+</div>
+
+</section>
+>
+
+<!-- Chat icon -->
+<div class="chat-icon" id="chatIcon">💬</div>
+
+<!-- Welcome Popup -->
+<div class="welcome-popup" id="welcomePopup">
+    <img src="data:image/png;base64,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" alt="Assistant">
+    <span>Hello! I’m your friendly AI assistant. Click the chat to ask me anything!</span>
+</div>
+
+<!-- AI Chat Popup -->
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+        <span>Domus AI Assistant</span>
+        <button id="closeChat">&times;</button>
+    </div>
+    <div class="chat-container" id="chatContainer">
+        <!-- Initial greeting will be added by JS -->
+    </div>
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type your question..." />
+        <button id="sendBtn">Send</button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Domus AI Solutions. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Show welcome popup on page load
+const welcomePopup = document.getElementById('welcomePopup');
+const chatIcon = document.getElementById('chatIcon');
+
+window.addEventListener('load', () => {
+    setTimeout(() => welcomePopup.classList.add('show'), 1000);
+});
+
+// Hide welcome popup on hover or chat open
+welcomePopup.addEventListener('mouseenter', () => welcomePopup.classList.remove('show'));
+chatIcon.addEventListener('click', () => welcomePopup.classList.remove('show'));
+
+// Basic chat JS (replace with your full chat.js)
+const chatPopup = document.getElementById('chatPopup');
+const closeChat = document.getElementById('closeChat');
+const chatContainer = document.getElementById('chatContainer');
+const userInput = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+
+chatIcon.addEventListener('click', () => chatPopup.style.display = 'flex');
+closeChat.addEventListener('click', () => chatPopup.style.display = 'none');
+
+function appendMessage(text, sender='ai') {
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${sender}`;
+    bubble.textContent = text;
+    chatContainer.appendChild(bubble);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Initial greeting
+window.addEventListener('load', () => {
+    appendMessage("Hello! I'm your friendly AI assistant. How can I help you today?");
+});
+
+sendBtn.addEventListener('click', () => {
+    const msg = userInput.value.trim();
+    if(!msg) return;
+    appendMessage(msg, 'user');
+    userInput.value = '';
+    setTimeout(() => appendMessage("That's a great question! Let me help you..."), 800);
+});
+
+userInput.addEventListener('keypress', e => { if(e.key==='Enter') sendBtn.click(); });
+</script>
+
+</body>
+</html>

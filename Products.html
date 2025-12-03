@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domus AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <img src="./assets/logo.png" alt="Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Products.html">Products</a></li>
+            <li><a href="app.html">App</a></li>
+            <li><a href="Priceing.html">Priceing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Logins.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- PRODUCTS SECTION -->
+<section class="products-section">
+    <h2 class="section-title">Our Smart Home Products</h2>
+    <!-- Floating Cart Button -->
+    <button id="cartButton" class="cart-btn">🛒 <span id="cartCount">0</span></button>
+
+    <!-- Slide-Out Cart Menu -->
+    <div id="cartMenu" class="cart-menu">
+        <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+        <h3>Your Cart</h3>
+        <ul id="cartItems"></ul>
+        <button class="checkout-btn">Checkout</button>
+    </div>
+
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="./assets/store/images/dishwasher.jpg" alt="Smart Dishwasher">
+            <h3>Smart Dishwasher</h3>
+            <p>Energy-efficient and fully automated dish care powered by Domus AI.</p>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="./assets/store/images/thermostat.jpg" alt="AI Thermostat">
+            <h3>AI Thermostat</h3>
+            <p>Adaptive climate control that learns your daily patterns.</p>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="./assets/store/images/stove.jpg" alt="Smart Stove">
+            <h3>Smart Stove</h3>
+            <p>Advanced cooking safety with AI heat monitoring and auto-shutoff.</p>
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+        <!-- Add more product cards as needed -->
+    </div>
+</section>
+
+<!-- Chat icon -->
+<div class="chat-icon" id="chatIcon">💬</div>
+
+<!-- Welcome Popup -->
+<div class="welcome-popup" id="welcomePopup">
+    <img src="./assets/logo.png" alt="Assistant" width="40">
+    <span>Hello! I’m your friendly AI assistant. Click the chat to ask me anything!</span>
+</div>
+
+<!-- AI Chat Popup -->
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+        <span>Domus AI Assistant</span>
+        <button id="closeChat">&times;</button>
+    </div>
+    <div class="chat-container" id="chatContainer"></div>
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type your question..." />
+        <button id="sendBtn">Send</button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Domus AI. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ================== WELCOME POPUP ==================
+const welcomePopup = document.getElementById('welcomePopup');
+const chatIcon = document.getElementById('chatIcon');
+
+window.addEventListener('load', () => {
+    setTimeout(() => welcomePopup.classList.add('show'), 1000);
+});
+
+// Hide welcome popup on hover or when chat opens
+welcomePopup.addEventListener('mouseenter', () => welcomePopup.classList.remove('show'));
+chatIcon.addEventListener('click', () => welcomePopup.classList.remove('show'));
+
+// ================== CHAT ==================
+const chatPopup = document.getElementById('chatPopup');
+const closeChat = document.getElementById('closeChat');
+const chatContainer = document.getElementById('chatContainer');
+const userInput = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+
+chatIcon.addEventListener('click', () => chatPopup.style.display = 'flex');
+closeChat.addEventListener('click', () => chatPopup.style.display = 'none');
+
+function appendMessage(text, sender='ai') {
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${sender}`;
+    bubble.textContent = text;
+    chatContainer.appendChild(bubble);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Initial greeting
+window.addEventListener('load', () => {
+    appendMessage("Hello! I'm your friendly AI assistant. How can I help you today?");
+});
+
+sendBtn.addEventListener('click', () => {
+    const msg = userInput.value.trim();
+    if(!msg) return;
+    appendMessage(msg, 'user');
+    userInput.value = '';
+    setTimeout(() => appendMessage("That's a great question! Let me help you..."), 800);
+});
+
+userInput.addEventListener('keypress', e => { if(e.key==='Enter') sendBtn.click(); });
+
+// ================== CART MENU ==================
+const cartButton = document.getElementById('cartButton');
+const cartMenu = document.getElementById('cartMenu');
+const closeCartBtn = document.getElementById('closeCartBtn');
+const cartItems = document.getElementById('cartItems');
+const cartCount = document.getElementById('cartCount');
+const buyButtons = document.querySelectorAll('.buy-btn');
+let count = 0;
+
+// Open/close cart menu
+cartButton.addEventListener('click', () => cartMenu.classList.add('open'));
+closeCartBtn.addEventListener('click', () => cartMenu.classList.remove('open'));
+
+// Add to cart functionality
+buyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const productCard = btn.parentElement;
+        const name = productCard.querySelector('h3').textContent;
+        const li = document.createElement('li');
+        li.textContent = name;
+        cartItems.appendChild(li);
+        count++;
+        cartCount.textContent = count;
+    });
+});
+
+// Checkout button
+const checkoutBtn = document.querySelector('.checkout-btn');
+checkoutBtn.addEventListener('click', () => {
+    cartMenu.classList.remove('open'); // close cart
+    alert("Proceeding to checkout..."); // replace with your real checkout logic
+});
+</script>
+
+
+</body>
+</html>
